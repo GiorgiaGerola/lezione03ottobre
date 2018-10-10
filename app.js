@@ -4,6 +4,12 @@ var util= require("util");
 
 var app = express();
 
+app.get("/users/:userid", function(req, res) {
+    var userId = parseInt(req.params.userid, 10);
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.end("Users:"+userId);
+    });
+
 app.use(function(request, response, next) {
     //console.log("In comes a " + request.method + " to " + request.url);
     //console.log(util.inspect(request, {showHidden: false, depth: null}));
@@ -25,7 +31,7 @@ app.use(function(request, response, next) {
 app.use(function(request, response) {
     var query = request.query;
     //response.writeHead(200, { "Content-Type": "text/plain" });
-    response.writeHead(500, { "Content-Type": "text/html" });
+    response.writeHead(200, { "Content-Type": "text/html" });
     response.end("Hello, world! <br>"+query.p);
 });
 
